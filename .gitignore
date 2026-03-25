@@ -1,0 +1,26 @@
+node_modules/
+# Java / Spring Boot
+backend/target/
+backend/.mvn/
+backend/mvnw
+backend/mvnw.cmd
+backend/.idea/
+backend/*.iml
+
+# Node / Vue.js
+frontend/node_modules/
+frontend/dist/
+frontend/.DS_Store
+frontend/.vscode/
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.log
+
+# Database scripts (optional)
+# SQl.sql
+
+# Local Configuration (Sensitive data)
+# backend/src/main/resources/application.properties
