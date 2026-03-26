@@ -52,11 +52,10 @@ public class WebSecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        // Allow the Vercel deployment and local development origins
-        configuration.setAllowedOrigins(Arrays.asList(
-            "https://blog-cntt-6ux0e55j3-nguyenhoangminhanh4010-hashs-projects.vercel.app",
-            "https://blog-cntt.vercel.app",
-            "http://localhost:5173"
+        // Use allowedOriginPatterns to support wildcards and credentials together
+        configuration.setAllowedOriginPatterns(Arrays.asList(
+            "https://*.vercel.app",
+            "http://localhost:[*]"
         ));
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS", "HEAD"));
         configuration.setAllowedHeaders(Arrays.asList("*"));
@@ -79,7 +78,8 @@ public class WebSecurityConfig {
             .exceptionHandling(exception -> exception.authenticationEntryPoint(unauthorizedHandler))
             .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .authorizeHttpRequests(auth -> 
-                auth.requestMatchers("/api/auth/**").permitAll()
+                auth.requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
+                    .requestMatchers("/api/auth/**").permitAll()
                     .requestMatchers(HttpMethod.GET, "/api/posts", "/api/posts/**").permitAll()
                     .requestMatchers(HttpMethod.GET, "/api/questions", "/api/questions/**").permitAll()
                     .requestMatchers(HttpMethod.GET, "/api/answers/**").permitAll()
