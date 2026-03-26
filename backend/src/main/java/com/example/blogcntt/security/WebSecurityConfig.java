@@ -55,6 +55,7 @@ public class WebSecurityConfig {
         // Allow the Vercel deployment and local development origins
         configuration.setAllowedOrigins(Arrays.asList(
             "https://blog-cntt-6ux0e55j3-nguyenhoangminhanh4010-hashs-projects.vercel.app",
+            "https://blog-cntt.vercel.app",
             "http://localhost:5173"
         ));
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS", "HEAD"));
